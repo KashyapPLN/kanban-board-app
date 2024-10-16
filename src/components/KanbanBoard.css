@@ -1,0 +1,13 @@
+.kanban-board {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .add-section-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
