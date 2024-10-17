@@ -1,7 +1,6 @@
 import React from 'react';
 import Section from './Section.js';
 import './KanbanBoard.css';
-import { Button } from 'react-bootstrap';
 
 const KanbanBoard = ({ sections, setSections }) => {
   const addSection = () => {

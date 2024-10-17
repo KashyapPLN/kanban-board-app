@@ -1,53 +1,57 @@
 .task-card {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    position: relative;
-    min-width: 230px;
-    max-width: 230px;
-    overflow: hidden;
-  }
-  .task-card p {
-    margin: 5px 0;
-    word-wrap: break-word;
-    font-size: 14px;
-  }
-  .task-card small{
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .yesterday {
-    color: red;
-  }
-  
-  .tomorrow {
-    color: blue;
-  }
-  .more-dropdown {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-  }
-  .more-btn {
-    background: none;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  min-width: 230px;
+  max-width: 230px;
+  overflow: hidden;
+}
+
+.task-card p {
+  margin: 5px 0;
+  word-wrap: break-word;
+  font-size: 14px;
+}
+
+.task-card small {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.yesterday {
+  color: red;
+}
+
+.tomorrow {
+  color: blue;
+}
+
+.more-dropdown {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.more-btn {
+  background: none;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 0;
-  }
+}
 
-  .more-btn::after { 
-    content: none; 
-} 
-  .dropdown-menu {
-    border-radius: 5px;
-    padding: 5px 0;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #f0f0f0;
-  }
-  
-  
+.more-btn::after {
+  content: none;
+}
+
+.dropdown-menu {
+  border-radius: 5px;
+  padding: 5px 0;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
