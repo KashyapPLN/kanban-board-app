@@ -1,6 +1,7 @@
 .app-container {
-  padding: 20px;
 background: white;
 height: 100vh;
+min-width: 100vw;
+font-family: "Roboto", sans-serif;
 }
 

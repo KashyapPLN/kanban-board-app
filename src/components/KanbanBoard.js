@@ -1,12 +1,13 @@
 import React from 'react';
 import Section from './Section.js';
 import './KanbanBoard.css';
+import { Button } from 'react-bootstrap';
 
 const KanbanBoard = ({ sections, setSections }) => {
   const addSection = () => {
     const newSection = {
       id: `section-${sections.length + 1}`,
-      title: 'New Section',
+      title: 'Review',
       tasks: [],
     };
     setSections([...sections, newSection]);
