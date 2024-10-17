@@ -5,26 +5,24 @@ import Modal from 'react-bootstrap/Modal';
 import { IoIosMore } from 'react-icons/io';
 import { GoPlus } from 'react-icons/go';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { v4 as uuidv4 } from 'uuid';
 
 const Section = ({ section, sections, setSections }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [newTask, setNewTask] = useState({ name: '', description: '', dueDate: '', assignee: '', status: '' });
-  const [status, setStatus] = useState(null);
+  const [newTask, setNewTask] = useState({ name: '', description: '', dueDate: '', assignee: ''});
 
   const addSectionTask = (sectionId) => {
     console.log(sectionId);
-    setStatus(sectionId)
     handleShow();
   }
 
   const addTask = () => {
     if (newTask.name !== '' && newTask.description !== '' && newTask.assignee !== '' && newTask.dueDate !== '' && newTask.status !== null) {
-      const updatedSection = { ...section, tasks: [...section.tasks, { ...newTask, id: `task-${section.tasks.length + 1}` }] };
+      const updatedSection = { ...section, tasks: [...section.tasks, { ...newTask, id: `task-${section.id}-${uuidv4()}` }] };
       setSections(sections.map((s) => (s.id === section.id ? updatedSection : s)));
-      console.log("status is ", status);
-      setNewTask({ name: '', description: '', dueDate: '', assignee: '', status: status });
+      setNewTask({ name: '', description: '', dueDate: '', assignee: ''});
       handleClose();
     }
   };

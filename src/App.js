@@ -10,41 +10,43 @@ function App() {
     { id: 'in-progress', title: 'In Progress', tasks: [] },
     { id: 'done', title: 'Done', tasks: [] },
   ]);
+
+  const moveTaskBetweenSections = (sourceSectionId, destinationSectionId, sourceIndex, destinationIndex, task) => {
+    // Update source section (remove task)
+    const updatedSourceTasks = Array.from(sections.find(s => s.id === sourceSectionId).tasks);
+    updatedSourceTasks.splice(sourceIndex, 1);
+
+    // Update destination section (add task)
+    const updatedDestinationTasks = Array.from(sections.find(s => s.id === destinationSectionId).tasks);
+    const updatedTask = { ...task, status: destinationSectionId }; // Update task status if needed
+    updatedDestinationTasks.splice(destinationIndex, 0, updatedTask);
+
+    // Update sections with modified tasks
+    setSections(sections.map(section => {
+      if (section.id === sourceSectionId) {
+        return { ...section, tasks: updatedSourceTasks };
+      } else if (section.id === destinationSectionId) {
+        return { ...section, tasks: updatedDestinationTasks };
+      } else {
+        return section;
+      }
+    }));
+  };
+
   const onDragEnd = (result) => {
     const { source, destination } = result;
-
     if (!destination) {
-      return; // If dropped outside any droppable area
+      return; // Dropped outside any droppable area
     }
+    const sourceSectionId = source.droppableId;
+    const destinationSectionId = destination.droppableId;
 
-    const sourceSection = sections.find(s => s.id === source.droppableId);
-    const destinationSection = sections.find(s => s.id === destination.droppableId);
-
-    if (sourceSection === destinationSection) {
-      // Reordering within the same section
-      const newTasks = Array.from(sourceSection.tasks);
-      const [movedTask] = newTasks.splice(source.index, 1);
-      newTasks.splice(destination.index, 0, movedTask);
-
-      const updatedSection = { ...sourceSection, tasks: newTasks };
-      setSections(sections.map(s => (s.id === sourceSection.id ? updatedSection : s)));
+    if (sourceSectionId === destinationSectionId) {
+      // Reordering within the same section (handled elsewhere)
     } else {
       // Moving to a different section
-      const sourceTasks = Array.from(sourceSection.tasks);
-      const [movedTask] = sourceTasks.splice(source.index, 1);
-
-      const destinationTasks = Array.from(destinationSection.tasks);
-      const updatedTask = { ...movedTask, status: destinationSection.id !== 'todo' && destinationSection.id !== 'in-progress' && destinationSection.id !== 'done' ? 'review' : destinationSection.id };
-      destinationTasks.splice(destination.index, 0, updatedTask);
-
-      const updatedSource = { ...sourceSection, tasks: sourceTasks };
-      const updatedDestination = { ...destinationSection, tasks: destinationTasks };
-
-      setSections(sections.map(s => {
-        if (s.id === sourceSection.id) return updatedSource;
-        if (s.id === destinationSection.id) return updatedDestination;
-        return s;
-      }));
+      moveTaskBetweenSections(sourceSectionId, destinationSectionId, source.index, destination.index, sections.find(s => s.id === sourceSectionId).tasks[source.index]);
+      console.log("destination ",destinationSectionId)
     }
   };
 
