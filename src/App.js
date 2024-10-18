@@ -9,6 +9,7 @@ function App() {
     { id: 'todo', title: 'To Do', tasks: [] },
     { id: 'in-progress', title: 'In Progress', tasks: [] },
     { id: 'done', title: 'Done', tasks: [] },
+    { id: 'review', title: 'Review', tasks: [] },
   ]);
 
   const moveTaskBetweenSections = (sourceSectionId, destinationSectionId, sourceIndex, destinationIndex, task) => {

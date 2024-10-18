@@ -6,7 +6,7 @@ const KanbanBoard = ({ sections, setSections }) => {
   const addSection = () => {
     const newSection = {
       id: `section-${sections.length + 1}`,
-      title: 'Review',
+      title: 'New Section',
       tasks: [],
     };
     setSections([...sections, newSection]);
