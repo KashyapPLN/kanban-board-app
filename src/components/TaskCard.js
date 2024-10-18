@@ -10,9 +10,9 @@ const TaskCard = ({ task, deleteTask }) => {
     const date = new Date(dueDate);
     const diffTime = date.setHours(0, 0, 0, 0) - today.setHours(0, 0, 0, 0);
     const diffDays = diffTime / (1000 * 60 * 60 * 24);
-  
+
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  
+
     if (diffDays === 0) {
       return 'Today';
     } else if (diffDays === -1) {
@@ -38,14 +38,14 @@ const TaskCard = ({ task, deleteTask }) => {
       <h5>{task.name}</h5>
       <p>{task.description}</p>
       <section className='task-assignee-section'>
-      <span ><FaUserCircle className='assignee-dp-icon'/></span>
-      <span className='assignee-info'>
-      <small className="assignee-name" title={task.assignee}>Assignee: {formatAssigneeName(task.assignee)}</small>
-      <br />
-      <small>Due: {formatDueDate(task.dueDate)}</small>
-      </span>
+        <span ><FaUserCircle className='assignee-dp-icon' /></span>
+        <span className='assignee-info'>
+          <small className="assignee-name" title={task.assignee}>Assignee: {formatAssigneeName(task.assignee)}</small>
+          <br />
+          <small>Due: {formatDueDate(task.dueDate)}</small>
+        </span>
       </section>
-      
+
       <Dropdown className="more-dropdown">
         <Dropdown.Toggle
           as="button"

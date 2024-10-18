@@ -20,7 +20,8 @@
   border: none;
 }
 
-.add-section-form input{ display: block;
+.add-section-form input {
+  display: block;
   margin-bottom: 10px;
   width: 100%;
   padding: 8px;
@@ -28,6 +29,7 @@
   border: 2px solid rgb(240 240 240);
   border-radius: 12px;
 }
+
 .add-section-form button {
   background-color: rgb(240 240 240);
   justify-content: center;

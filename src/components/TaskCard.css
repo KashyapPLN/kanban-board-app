@@ -55,13 +55,15 @@
 .dropdown-item:hover {
   background-color: #f0f0f0;
 }
-.task-assignee-section{
+
+.task-assignee-section {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-.assignee-dp-icon{
+
+.assignee-dp-icon {
   height: 32px;
   width: 32px;
 }

@@ -38,18 +38,18 @@ function App() {
     const destinationSectionId = destination.droppableId;
 
     if (sourceSectionId === destinationSectionId) {
-   
+
     } else {
-        moveTaskBetweenSections(sourceSectionId, destinationSectionId, source.index, destination.index, sections.find(s => s.id === sourceSectionId).tasks[source.index]);
-      console.log("destination ",destinationSectionId)
+      moveTaskBetweenSections(sourceSectionId, destinationSectionId, source.index, destination.index, sections.find(s => s.id === sourceSectionId).tasks[source.index]);
+      console.log("destination ", destinationSectionId)
     }
   };
 
   return (
     <div className="app-container">
-      <Navbar/>
+      <Navbar />
       <DragDropContext onDragEnd={onDragEnd}>
-      <KanbanBoard sections={sections} setSections={setSections} />
+        <KanbanBoard sections={sections} setSections={setSections} />
       </DragDropContext>
     </div>
   );

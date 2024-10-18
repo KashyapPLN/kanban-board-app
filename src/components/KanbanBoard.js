@@ -4,7 +4,7 @@ import './KanbanBoard.css';
 import { Modal } from 'react-bootstrap';
 
 const KanbanBoard = ({ sections, setSections }) => {
-  const [sectionName,SetSectionName]=useState('New Section');
+  const [sectionName, SetSectionName] = useState('New Section');
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -32,22 +32,22 @@ const KanbanBoard = ({ sections, setSections }) => {
         + Add Section
       </button>
       <Modal show={show} onHide={handleClose} centered>
-          <Modal.Header style={{ borderBottom: 'none' }} closeButton>
-            <Modal.Title style={{ fontSize: '16px' }}>Section Name</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="add-section-form">
-              <input
-                type="text"
-                placeholder="Section Name"
-                onChange={(e) => SetSectionName(e.target.value )}
-              />
-                <div className='modal-btn-div'>
-                <button onClick={addSection}>Add Section</button>
-              </div>
+        <Modal.Header style={{ borderBottom: 'none' }} closeButton>
+          <Modal.Title style={{ fontSize: '16px' }}>Section Name</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="add-section-form">
+            <input
+              type="text"
+              placeholder="Section Name"
+              onChange={(e) => SetSectionName(e.target.value)}
+            />
+            <div className='modal-btn-div'>
+              <button onClick={addSection}>Add Section</button>
             </div>
-          </Modal.Body>
-        </Modal>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };
