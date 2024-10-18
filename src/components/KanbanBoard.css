@@ -10,6 +10,8 @@
 .add-section-btn {
   color: rgb(170, 170, 170);
   padding: 0;
+  font-size: 14px;
+  font-weight: 500;
   height: 30px;
   width: 150px;
   min-width: 150px;
