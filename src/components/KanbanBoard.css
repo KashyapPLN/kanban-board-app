@@ -19,3 +19,30 @@
   background-color: transparent;
   border: none;
 }
+
+.add-section-form input{ display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 8px;
+  color: rgb(170, 170, 170);
+  border: 2px solid rgb(240 240 240);
+  border-radius: 12px;
+}
+.add-section-form button {
+  background-color: rgb(240 240 240);
+  justify-content: center;
+  border-radius: 12px;
+  border: 2px solid rgb(240 240 240);
+  display: flex;
+  align-items: center;
+  color: rgb(170, 170, 170);
+  height: 2.4rem;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 20px 0px;
+}
+
+.add-section-form button:hover {
+  background-color: rgb(224, 223, 223);
+}
