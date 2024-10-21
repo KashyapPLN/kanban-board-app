@@ -14,8 +14,7 @@ const Section = ({ section, sections, setSections }) => {
   const [newTask, setNewTask] = useState({ name: '', description: '', dueDate: '', assignee: '' });
 
   const addSectionTask = (sectionId) => {
-    console.log(sectionId);
-    handleShow();
+      handleShow();
   }
 
   const addTask = () => {

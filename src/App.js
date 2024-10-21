@@ -41,7 +41,6 @@ function App() {
 
     } else {
       moveTaskBetweenSections(sourceSectionId, destinationSectionId, source.index, destination.index, sections.find(s => s.id === sourceSectionId).tasks[source.index]);
-      console.log("destination ", destinationSectionId)
     }
   };
 
