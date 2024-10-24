@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Section from './Section.js';
 import './KanbanBoard.css';
 import { Modal } from 'react-bootstrap';
 
-const KanbanBoard = ({ sections, setSections }) => {
+const KanbanBoard = ({ sections, setSections, boardId }) => {
   const [sectionName, SetSectionName] = useState('New Section');
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -13,10 +13,35 @@ const KanbanBoard = ({ sections, setSections }) => {
       id: `section-${sections.length + 1}`,
       title: sectionName,
       tasks: [],
+      boardId
     };
-    setSections([...sections, newSection]);
-    handleClose();
+    addNewSection(newSection);
+
   };
+
+  async function addNewSection(newSection) {
+
+    try {
+      const response = await fetch('https://kanban-board-app-backend.onrender.com/sections', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newSection),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error   
+fetching data: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      setSections([...sections, data.section]);
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="kanban-board">
@@ -26,6 +51,7 @@ const KanbanBoard = ({ sections, setSections }) => {
           section={section}
           sections={sections}
           setSections={setSections}
+          boardId={boardId}
         />
       ))}
       <button className="add-section-btn" onClick={handleShow}>

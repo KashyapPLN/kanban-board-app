@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('../public/MonaSans/Mona-Sans.ttf') format('truetype'),
+       url('../public/MonaSans/Mona-Sans.woff2') format('woff2');
+}

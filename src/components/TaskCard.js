@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './TaskCard.css';
 import { IoIosMore } from 'react-icons/io';
 import { Dropdown } from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa';
 
-const TaskCard = ({ task, deleteTask }) => {
+const TaskCard = ({ task, deleteTask, employees }) => {
   const formatDueDate = (dueDate) => {
     const today = new Date();
     const date = new Date(dueDate);
@@ -22,30 +22,22 @@ const TaskCard = ({ task, deleteTask }) => {
     } else {
       const day = date.getDate().toString().padStart(2, '0');
       const month = monthNames[date.getMonth()];
-      const year = date.getFullYear();
-      return `${day}-${month}-${year}`;
+      return `${day} ${month}`;
     }
-  };
-  const formatAssigneeName = (assigneeName) => {
-    if (assigneeName.length > 10) {
-      return `${assigneeName.substring(0, 10)}...`;
-    }
-    return assigneeName;
   };
 
   return (
     <div className="task-card">
       <h5>{task.name}</h5>
       <p>{task.description}</p>
+      <div className='task-details'>
       <section className='task-assignee-section'>
-        <span ><FaUserCircle className='assignee-dp-icon' /></span>
-        <span className='assignee-info'>
-          <small className="assignee-name" title={task.assignee}>Assignee: {formatAssigneeName(task.assignee)}</small>
-          <br />
-          <small>Due: {formatDueDate(task.dueDate)}</small>
-        </span>
-      </section>
-
+        {task.assignee? <span ><img src={employees && employees.find(employee => employee._id === task.assignee).profilePicture} className='assignee-dp' /></span>:
+        <span ><FaUserCircle className='assignee-dp-icon' /></span>}
+          <small>{formatDueDate(task.dueDate)}</small>
+          </section>
+          {task.assignee  && <span className='task-category'>{employees && employees.find(employee => employee._id === task.assignee).team}</span>}
+          </div>
       <Dropdown className="more-dropdown">
         <Dropdown.Toggle
           as="button"

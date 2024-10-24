@@ -2,6 +2,13 @@
 background: white;
 height: 100vh;
 min-width: 100vw;
-font-family: "Roboto", sans-serif;
+font-family: 'Mona Sans';
+}
+
+.spinner-div{
+    display: flex;
+    justify-content: center;
+    gap:20px;
+    align-items: center;
 }
 

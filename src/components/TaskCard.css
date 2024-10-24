@@ -1,13 +1,17 @@
 .task-card {
   background: #fff;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 12px;
+  padding: 12px;
   margin-bottom: 10px;
   position: relative;
   min-width: 230px;
   max-width: 230px;
   overflow: hidden;
+}
+.task-card h5{
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .task-card p {
@@ -15,9 +19,23 @@
   word-wrap: break-word;
   font-size: 14px;
 }
+.task-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-category{
+  color:rgb(170, 170, 170);
+  padding: 4px 8px;
+  border-radius: 12px;
+  /* height: 16px; */
+  font-size: 12px;
+  background: rgb(240 240 240);
+}
 
 .task-card small {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
 }
 
@@ -59,11 +77,17 @@
 .task-assignee-section {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap:10px;
   align-items: center;
 }
 
 .assignee-dp-icon {
-  height: 32px;
-  width: 32px;
+  height: 30px;
+  width: 30px;
+}
+
+.assignee-dp{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
 }
