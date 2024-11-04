@@ -21,6 +21,7 @@ const Section = ({ section, sections, setSections, boardId }) => {
   const [sectionId, setSectionId] = useState('');
   const [employees, setEmployees] = useState('');
   const [newTask, setNewTask] = useState({ name: '', description: '', dueDate: '', assignee: '' });
+  const [editedTask, setEditedTask] = useState({ name: '', description: '', dueDate: '', assignee: '' });
 
   useEffect(() => {
     async function getAllEmployees() {
@@ -150,6 +151,31 @@ fetching data: ${response.statusText}`);
     }
   }
 
+  const editTask = (taskId, sectId) => {
+    handleEditTask(taskId, sectId);
+  };
+  
+  async function handleEditTask(taskId, sectId) {
+    try {
+      const response = await fetch(`https://kanban-board-app-backend.onrender.com/tasks/${boardId}/${sectId}/${taskId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editedTask),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setSections(data);
+      } else {
+        console.error('Error deleting section:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error deleting section:', error);
+    }
+  }
+
   const deleteTask = (taskId, sectId) => {
     handleDeleteTask(taskId, sectId);
   };
@@ -189,7 +215,8 @@ fetching data: ${response.statusText}`);
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
-                    <TaskCard key={task._id} task={task} deleteTask={() => deleteTask(task._id, section._id)} employees={employees ? employees : null} />
+                    <TaskCard key={task._id} task={task} deleteTask={() => deleteTask(task._id, section._id)} editTask={() => editTask(task._id, section._id)}
+                    editedTask={editedTask} setEditedTask={setEditedTask} employees={employees ? employees : null} />
                   </div>
                 )}
               </Draggable>

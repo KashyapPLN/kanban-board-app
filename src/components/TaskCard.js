@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './TaskCard.css';
 import { IoIosMore } from 'react-icons/io';
-import { Dropdown } from 'react-bootstrap';
+import { Dropdown, Modal } from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa';
 
-const TaskCard = ({ task, deleteTask, employees }) => {
+const TaskCard = ({ task, deleteTask,editTask, editedTask, setEditedTask, employees }) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const formatDueDate = (dueDate) => {
     const today = new Date();
     const date = new Date(dueDate);
@@ -25,7 +28,14 @@ const TaskCard = ({ task, deleteTask, employees }) => {
       return `${day} ${month}`;
     }
   };
-
+useEffect(()=>{
+  setEditedTask({
+    name: task.name,
+    description: task.description,
+    dueDate: task.dueDate,
+    assignee: task.assignee,
+})
+},[task]);
   return (
     <div className="task-card">
       <h5>{task.name}</h5>
@@ -47,9 +57,49 @@ const TaskCard = ({ task, deleteTask, employees }) => {
           <IoIosMore />
         </Dropdown.Toggle>
         <Dropdown.Menu>
+        <Dropdown.Item onClick={handleShow}>Edit</Dropdown.Item>
           <Dropdown.Item onClick={deleteTask}>Delete</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
+      <Modal show={show} onHide={handleClose} centered>
+            <Modal.Header style={{ borderBottom: 'none' }} closeButton>
+              <Modal.Title style={{ fontSize: '16px' }}>Edit Task</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="add-task-form">
+                <input
+                  type="text"
+                  placeholder="Task Name"
+                  value={editedTask.name}
+                  onChange={(e) => setEditedTask({ ...editedTask, name: e.target.value })}
+                />
+                <textarea
+                  rows={4}
+                  cols={52}
+                  placeholder="Description"
+                  value={editedTask.description}
+                  onChange={(e) => setEditedTask({ ...editedTask, description: e.target.value })}
+                />
+                <input
+                  type="date"
+                  placeholder="Due Date"
+                  value={editedTask.dueDate}
+                  onChange={(e) => setEditedTask({ ...editedTask, dueDate: e.target.value })}
+                />
+                <select
+                  value={editedTask.assignee}
+                  onChange={(e) => setEditedTask({ ...editedTask, assignee: e.target.value })}
+                >
+                  {/* Add options here based on your implementation */}
+                  <option value="select">Select Assignee</option>
+                  {employees && employees.map(employee => <option key={employee._id} value={employee._id}>{employee.name}</option>)}
+                </select>
+                <div className='modal-btn-div'>
+                  <button onClick={()=>{editTask();handleClose();}}>Edit Task</button>
+                </div>
+              </div>
+            </Modal.Body>
+          </Modal>
     </div>
   );
 };
